@@ -1,0 +1,14 @@
+variable name: DSP_thresholds
+use objects: True
+data:
+  # This is for <21 at home
+  u21_single_at_home: 1076.6
+  # This for >=21 at home
+  o21_single_at_home: 2000
+---
+# Don't change thresholds here
+code: |
+  result = a * b / DSP_thresholds['u21_single_at_home']
+  kd
+  dd
+---
