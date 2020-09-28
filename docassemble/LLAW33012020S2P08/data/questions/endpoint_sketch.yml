@@ -1,0 +1,25 @@
+---
+#Rough Sketch of the endpoint w if statements 
+event: endpoint('eligible')
+
+# NON-STANDARD RATE 
+if user_age < 21 or if user_children == 0:
+  # NESTED IF STATEMENT FOR NON_STANDRAD RATE
+  if user_martial == 'single' and user_income =< 178:    
+    pension reduced by 0
+  if user_martial == 'married' and user_income =< 318: 
+    pension reduced by 0
+   else:
+  # INSERT calculator of some sort to reduce each dollar earned by 50c
+
+#STANDARD RATE
+  if user_martial == 'single' and user_income =< 178: 
+    pension reduced by 0
+  if user_martial == 'married' and user_income =< 318: 
+    pension reduced by 0
+  else:
+# INSERT calculator of some sort to reduce each dollar earned by 50c
+
+# Need to do
+# How to insert income limit? Many If statements? 
+# Should the divider into the standard and non-standard rate be the income limit?

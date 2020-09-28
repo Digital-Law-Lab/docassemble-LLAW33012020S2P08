@@ -1,0 +1,32 @@
+---
+question: |
+  Please answer the following questions?
+fields:
+ - What is your income?: user_income
+   datatype: currency
+   min: 0
+ - What is your age?: user_age
+   datatype: date
+   default: |
+      ${ today().minus(years=40) }
+ - How many hours have you worked?: user_hours
+   datatype: integer
+ - What is your marital status?: user_marital  
+   datatype: radio
+   choices:
+   - Married
+   - Single 
+ - Do you have any dependent children?: user_children
+   datatype: integer
+---
+mandatory: true
+question: |
+  Please verify that the information you have provided is correct.
+subquestion: |
+    Information requested  | Information Provided
+    -------|---------
+    Your income | Your income is ${ user_income } . 
+    Your age | Your age is $ { } . 
+    Hours worked   | You have worked ${ } hours. 
+    Your martial status | You are ${ user_marital } .
+    Dependent children | You have ${ user_children } dependent children. 
