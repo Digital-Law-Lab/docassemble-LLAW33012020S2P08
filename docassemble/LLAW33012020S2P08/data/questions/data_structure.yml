@@ -1,0 +1,84 @@
+---
+variable name: threshold_table
+use objects: True
+data:
+  over_21:
+    has_chn:
+      is_married:
+        NA:
+          DSP_cutoff: 2066.5
+          no_pen_thr: 178
+          ded_amt: 0.5
+          ded_inc: 1
+  18to20:
+    no_chn:
+      not_married:
+        at_home:
+          DSP_cutoff: 1076.6
+          no_pen_thr: 316
+          ded_amt: 0.4
+          ded_inc: 1
+---
+question: What age are you?
+fields:
+  - no label: P08age
+    datatype: integer
+---
+question: Do you have children?
+yesno: P08has_chn
+---
+question: Are you married?
+yesno: P08is_married
+---
+question: What is your income?
+fields:
+  - no label: P08income
+    datatype: currency
+---
+# Age category code block
+code: |
+  if P08age > 21:
+    P08age_category = 'over_21'
+  elif 18 >= P08age >= 20:
+    P08age_category = '18to20'
+  elif P08age < 18:
+    P08age_category = '18only'
+  else:
+    P08age_category = 'invalid'
+---
+code: |
+  if P08has_chn:
+    P08chn_cat = 'has_chn'
+  else:
+    P08chn_cat = 'no_chn'
+---
+code: |
+  if P08is_married == True:
+    P08marr_cat = 'is_married'
+  else: 
+    P08marr_cat = 'not_married'
+---
+# Get the info
+code: |
+  my_thresholds = threshold_table[P08age_category][P08chn_cat][P08marr_cat]['NA']
+  my_DSP_cutoff = my_thresholds['DSP_cutoff']
+  my_no_pen = my_thresholds['no_pen_thr']
+  my_ded_amt = my_thresholds['ded_amt']
+  my_ded_incr = my_thresholds['ded_inc']
+---
+code: |
+  temp_income = P08income - my_no_pen
+  amount_deducted = temp_income / my_ded_incr * my_ded_amt
+---
+mandatory: True
+question: A screen
+subquestion: | 
+  Question|Answer
+  ---|---
+  **Your age**|${ P08age }
+  **Your income**|${ currency(P08income) }
+  **How much DSP is deducted**| ${ currency(amount_deducted) }
+---
+  
+  
+  
