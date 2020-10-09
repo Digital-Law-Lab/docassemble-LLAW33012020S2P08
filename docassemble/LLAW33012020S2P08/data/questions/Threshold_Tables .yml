@@ -1,0 +1,84 @@
+variable name: threshold_table
+use objects: True
+data:
+  over_21:
+    has_chn:
+      not_married:
+        NA:
+          DSP_cutoff: 2066.66
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+      is_married:
+        living_apart:
+          DSP_cutoff: 4093.20
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+          is_married:
+        living_tgt:
+          DSP_cutoff: 3163.20
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+  18to20:
+    no_chn:
+      not_married:
+        at_home:
+          DSP_cutoff: 1076.6
+          no_pen_thr: 316
+          ded_amt: 0.4
+          ded_inc: 1
+      married:
+        at_home:
+          DSP_cutoff: 2742.40
+          no_pen_thr: 316
+          ded_amt: 0.4
+          ded_inc: 1
+  16to20:
+    no_chn:
+      not_married:
+        independent:
+          DSP_cutoff: 1397.4
+          no_pen_thr: 178
+          ded_amt: 0.4
+          ded_inc: 1
+#Can merger <18 and 18-20 into 16-20 as the max income is the same
+18to20:
+    no_chn:
+      married:
+        NA:
+          DSP_cutoff: 2742.2
+          no_pen_thr: 316
+          ded_amt: 0.4
+          ded_inc: 1
+  below_18:
+    no_chn:
+      married:
+        NA:
+          DSP_cutoff: 2742.2
+          no_pen_thr: 316
+          ded_amt: 0.4
+          ded_inc: 1
+#For those who are under 21 but have children    
+  under_21:
+    has_chn:
+      not_married:
+        NA:
+          DSP_cutoff: 2066.66
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+      is_married:
+        living_apart:
+          DSP_cutoff: 4093.20
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+          is_married:     
+        living_tgt:
+          DSP_cutoff: 3163.20
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1          
+---

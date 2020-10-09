@@ -1,0 +1,128 @@
+#First two QNs - Age and Dependent Children to funnel the user into the 0.5c or 0.4c income deduction.
+#For the standard pension test, the user either has to be >21 OR have dep children.
+#Else: Transitional income screen event? 
+#The LAST screen will consist of confirmation of the user's answers AND the DSP income deductions.
+#How should the "Casacading dicts" in the "Threshold Tables" folder be implemented into the code below? 
+#How do we implement endscreens with the various casacding dicts? 
+--- 
+#Endscreen
+mandatory: True
+question: Endscreen
+subquestion: | 
+
+  You have given us the following responces: 
+  
+  Question|Answer
+  ---|---
+  **Your age**|${ P08age }
+  **Your income**|${ currency(P08income) }
+  **Your DSP income**|${ currency(P08dsp_income) }
+  **Your maritial status**| ${ P08is_married }
+  **Are you living apart or togather?**| ${ P08_table_married_apart }
+  **Do you have dependent children**| ${ P08has_chn }
+  **Do you live independently?**| ${ P08_table_dependence }
+  
+  Your DSP will be deducted by "PLACE DSP DEDUCTION CALCULATIONS here?"
+  You will make
+
+#Add in the DSP deducted portion
+#As I cannot find a way to hid categories in a table, inapplicable stuff like living apart for single users will display "N.A."
+---
+#Age Question
+question: What is your age?
+fields:
+  - Your age: P08age
+    datatype: integer
+    default: 35
+---
+#Dependent Children Question
+question: Do you have any dependent children?
+input type: radio
+choices: 
+ - Yes
+ - No
+---
+# Age category code block
+# Altered over_21 to include 21 as well
+code: |
+  if P08age >= 21:
+    P08age_category = 'over_21'
+  elif 17 < P08age < 21:
+    P08age_category = '18to20'
+  elif 15< P08age < 18:
+    P08age_category = '16to17'
+  else:
+    P08age_category = 'invalid'
+---
+#Dependent Children Question
+question: Do you have any dependent children?
+fields:
+  Do you have dependent children?: P08has_chn
+  datatype: radio
+  choices:
+  - Yes
+  - No
+---
+#Income Question
+question: What is your income per fortnight?
+fields:
+  - Your income: P08income
+    datatype: currency
+    help: |
+      Your income is      
+       * an amount you earn, derive or receive for your own use or benefit
+       * profits
+       * some regular payments you get as a gift or allowance.
+      More information here: https://www.servicesaustralia.gov.au/individuals/topics/income/30376
+---
+#DSP income question
+question: What is your dsp income?
+fields:   
+  - Your DSP income: P08dsp_income
+    datatype: currency
+---
+#Show if <21 and single
+question: Are you dependent or independent?
+fields:
+  Dependence Status: P08_Dependence
+  datatype: radio
+  choices:
+  - Independent
+  - Dependent
+  hide if:
+   variable: P08age_category
+   is: 'over_21'
+---
+#Code to display N.A. in table block
+code: |
+  if P08age_category == 'over_21': 
+    P08_table_dependence = 'N.A.'
+  else: 
+    P08_table_dependence = P08_Dependence
+---
+#Single or couple question
+#Add whether living apart or tgt
+question: Are you married?
+fields: 
+  - Marital status: P08is_married
+    datatype: radio
+    choices:
+      - Single
+      - Couple
+  - Are you living togather or apart due to illness?: P08_married_apart
+    input type: radio
+    choices:
+      - 'Living togather'
+      - 'Living apart due to illness'
+    show if:
+      variable: P08is_married
+      is: 'Couple'
+---
+---
+#Code to display N.A. in table block
+code: |
+  if P08is_married == 'Single': 
+    P08_table_married_apart = 'N.A.'
+  else: 
+    P08_table_married_apart = P08_married_apart
+---
