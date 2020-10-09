@@ -1,0 +1,147 @@
+---
+include: 
+  - Threshold_Tables.yml
+---
+#Age Question
+question: What is your age?
+fields:
+  - Your age: P08age
+    datatype: integer
+    default: 35
+---
+#Dependent Children Question
+question: Do you have any dependent children?
+input type: radio
+choices: 
+ - Yes
+ - No
+---
+# Age category code block
+# Altered over_21 to include 21 as well
+code: |
+  if P08age >= 21:
+    P08age_category = 'over_21'
+  elif 17 < P08age < 21:
+    P08age_category = '18to20'
+  elif 15< P08age < 18:
+    P08age_category = '16to17'
+  else:
+    P08age_category = 'invalid'
+---
+#Dependent Children Question
+question: Do you have any dependent children?
+yesno: P08has_chn
+---
+code: |
+  if P08has_chn:
+    P08chn_cat = 'has_chn'
+  else:
+    P08chn_cat = 'no_chn'
+---
+#Income Question
+question: What is your income per fortnight?
+fields:
+  - Your income: P08income
+    datatype: currency
+    help: |
+      Your income is      
+       * an amount you earn, derive or receive for your own use or benefit
+       * profits
+       * some regular payments you get as a gift or allowance.
+      More information here: https://www.servicesaustralia.gov.au/individuals/topics/income/30376
+---
+#DSP income question
+question: What is your dsp income?
+fields:   
+  - Your DSP income: P08dspincome
+    datatype: currency
+---
+#Show if <21 and single
+question: Are you dependent or independent?
+fields:
+  Dependence Status: P08_Dependence
+  datatype: radio
+  choices:
+  - Independent
+  - Dependent
+  hide if:
+   variable: P08age_category
+   is: 'over_21'
+---
+#Code to display N.A. in table block
+code: |
+  if P08age_category == 'over_21': 
+    P08_table_dependence = 'N.A.'
+  else: 
+    P08_table_dependence = P08_Dependence
+---
+#Single or couple question
+#Add whether living apart or tgt
+question: Are you married?
+fields: 
+  - Marital status: P08is_married
+    datatype: radio
+    choices:
+      - Single
+      - Couple
+  - Are you living togather or apart due to illness?: P08_married_apart
+    input type: radio
+    choices:
+      - 'Living togather'
+      - 'Living apart due to illness'
+    show if:
+      variable: P08is_married
+      is: 'Couple'
+---
+#Code to display N.A. in table block
+code: |
+  if P08is_married == 'Single': 
+    P08_table_married_apart = 'N.A.'
+  else: 
+    P08_table_married_apart = P08_married_apart
+---
+code: |
+  if P08is_married == True:
+    P08marr_cat = 'is_married'
+  else: 
+    P08marr_cat = 'not_married'
+---
+question: Living apart
+fields:
+  - Are you living apart?: P08apart_tgt
+    datatype: radio
+    choices:
+      - Living apart:living_apart
+      - Living together:living_tgt
+---
+# Get the info
+code: |
+  if P08age_category == 'over_21' and P08chn_cat == 'has_chn' and P08marr_cat == 'is_married':
+    P08fourth_subcat = P08apart_tgt
+  else:
+    P08fourth_subcat = 'NA'
+  my_thresholds = threshold_table[P08age_category][P08chn_cat][P08marr_cat][P08fourth_subcat]
+  #my_thresholds = threshold_table.item(P08age_category).item(P08chn_cat).item(P08marr_cat).item('NA')
+  my_DSP_cutoff = my_thresholds['DSP_cutoff']
+  my_no_pen = my_thresholds['no_pen_thr']
+  my_ded_amt = my_thresholds['ded_amt']
+  my_ded_incr = my_thresholds['ded_inc']
+---
+code: |
+  temp_income = P08income - my_no_pen
+  amount_deducted = temp_income / my_ded_incr * my_ded_amt
+---
+mandatory: True
+question: A screen
+subquestion: | 
+  Question|Answer
+  ---|---
+  **Your age**|${ P08age }
+  **Your income**|${ currency(P08income) }
+  **Your maritial status**| ${ P08is_married }
+  **Your current DSP is** | ${ currency(P08dspincome) }
+  **How much DSP is deducted**| ${ currency(amount_deducted) }
+---
+#Create an endpoint for incompatible age as well? 
+#For the standard income pension test, we need to add a living tgt and living apar t qn. 
+  
