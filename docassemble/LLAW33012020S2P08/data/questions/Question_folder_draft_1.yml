@@ -1,0 +1,88 @@
+#This code block is to be used to ask the questions required to fulfill the endpoint tables.
+---
+#Threshold Question
+question: How many hours do you work a week?
+fields: 
+ - Hours worked?: user_hours
+   datatype: integer 
+---
+#First Question 
+question: What age are you?
+fields:
+  - Your age: P08age
+    datatype: integer
+    default: 35
+---
+# Age category code block
+code: |
+  if P08age >= 21:
+    P08age_category = 'over_21'
+  elif 17 < P08age < 21:
+    P08age_category = '18to20'
+  elif P08age < 18:
+    P08age_category = 'below_18'
+  else:
+    P08age_category = 'invalid'
+---
+#added "DEPENDENT"
+question: Do you have any dependent children?
+fields: 
+ - no label: P08has_chn
+   datatype: radio 
+   choices: 
+    - Yes
+    - No
+---
+#Possibly redundant now 
+code: |
+  if P08has_chn:
+    P08chn_cat = 'has_chn'
+  else:
+    P08chn_cat = 'no_chn'
+---
+#Marriage Question
+question: Are you married?
+fields: 
+  - Marital status: P08is_married
+    datatype: radio
+    choices:
+      - Single
+      - Couple
+  - Are you living togather or apart due to illness?: P08_married_apart
+    input type: radio
+    choices:
+      - 'Living togather'
+      - 'Living apart due to illness'
+    show if:
+      variable: P08is_married
+      is: 'Couple'
+---
+question: What is your income per fortnight?
+fields:
+  - Your income: P08income
+    datatype: currency
+    help: |
+      Your income is      
+       * an amount you earn, derive or receive for your own use or benefit
+       * profits
+       * some regular payments you get as a gift or allowance.
+      More information here: https://www.servicesaustralia.gov.au/individuals/topics/income/30376
+---
+#Added this field
+question: What is your current DSP income?
+fields:
+  - no label: P08dspincome
+    datatype: currency
+---
+question: Are you dependent or independent?
+fields:
+  Dependence Status: P08_Dependence
+  input type: radio 
+  choices:
+  - Independent
+  - At Home
+    
+---
+
+
+  
