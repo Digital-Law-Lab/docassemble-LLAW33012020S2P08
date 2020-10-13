@@ -6,6 +6,15 @@ fields:
  - Hours worked?: user_hours
    datatype: integer 
 ---
+#Threshold Question
+question: Are you in reciept of the DSP?
+fields: 
+ - no label: user_DSP
+   datatype: radio 
+   choices:
+   - Yes
+   - No
+---   
 #First Question 
 question: What age are you?
 fields:
@@ -48,16 +57,18 @@ fields:
     choices:
       - Single
       - Couple
-  - Are you living togather or apart due to illness?: P08_married_apart
+  - Are you living together or apart due to illness?: P08_married_apart
     input type: radio
     choices:
-      - 'Living togather'
+      - 'Living together'
       - 'Living apart due to illness'
     show if:
       variable: P08is_married
       is: 'Couple'
 ---
 question: What is your income per fortnight?
+subquestion: |
+  Please exclude your DSP income from the figure.
 fields:
   - Your income: P08income
     datatype: currency
@@ -79,9 +90,8 @@ fields:
   Dependence Status: P08_Dependence
   input type: radio 
   choices:
-  - Independent
-  - At Home
-    
+    - 'Independent'
+    - 'At Home'   
 ---
 
 
