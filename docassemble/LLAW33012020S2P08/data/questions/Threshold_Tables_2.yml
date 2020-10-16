@@ -21,6 +21,25 @@ data:
           no_pen_thr: 316.00
           ded_amt: 0.5
           ded_inc: 1
+    no_chn:
+      Single:
+        NA:
+          DSP_cutoff: 2066.66
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+      Couple:
+        Living apart due to illness:
+          DSP_cutoff: 4093.20
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1
+          is_married:
+        Living together:
+          DSP_cutoff: 3163.20
+          no_pen_thr: 316.00
+          ded_amt: 0.5
+          ded_inc: 1          
   18to20:
     no_chn:
       Single:
@@ -54,7 +73,7 @@ data:
           ded_amt: 0.5
           ded_inc: 1
           is_married:     
-        living Together:
+        Living together:
           DSP_cutoff: 3163.20
           no_pen_thr: 316.00
           ded_amt: 0.5
@@ -92,7 +111,7 @@ data:
           ded_amt: 0.5
           ded_inc: 1
           is_married:     
-        living together:
+        Living together:
           DSP_cutoff: 3163.20
           no_pen_thr: 316.00
           ded_amt: 0.5
