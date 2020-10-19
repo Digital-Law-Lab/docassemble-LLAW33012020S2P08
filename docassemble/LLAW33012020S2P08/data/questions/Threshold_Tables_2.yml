@@ -6,7 +6,7 @@ data:
       Single:
         NA:
           DSP_cutoff: 2066.66
-          no_pen_thr: 316.00
+          no_pen_thr: 178.00
           ded_amt: 0.5
           ded_inc: 1
       Couple:
@@ -25,7 +25,7 @@ data:
       Single:
         NA:
           DSP_cutoff: 2066.66
-          no_pen_thr: 316.00
+          no_pen_thr: 178.00
           ded_amt: 0.5
           ded_inc: 1
       Couple:

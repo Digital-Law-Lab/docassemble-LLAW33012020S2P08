@@ -15,6 +15,9 @@ code: |
    elif P08age_category == 'over_21' and P08chn_cat == 'has_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living apart due to illness' :
       P08fourth_subcat = 'Living apart due to illness'
 
+   elif P08age_category == 'over_21' and P08chn_cat == 'no_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living apart due to illness' :
+      P08fourth_subcat = 'Living apart due to illness'
+
    elif P08age_category == '18to20' and P08chn_cat == 'no_chn' and P08is_married == 'Single' and P08_Dependence == 'At Home':
       P08fourth_subcat = 'At Home' 
 
