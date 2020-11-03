@@ -1,13 +1,15 @@
 #This code block is to be used to ask the questions required to fulfill the endpoint tables.
 ---
 #Threshold Question
-question: How many hours do you work a week?
+question: |
+  How many hours do you work **a week?**
 fields: 
  - Hours worked?: user_hours
    datatype: integer 
+   min: 0
 ---
 #Threshold Question
-question: Are you in reciept of the DSP?
+question: Are you a recipient of the DSP?
 fields: 
  - no label: user_DSP
    datatype: radio 
@@ -16,11 +18,12 @@ fields:
    - No
 ---   
 #First Question 
-question: What age are you?
+question: What is your age?
 fields:
   - Your age: P08age
     datatype: integer
     default: 35
+    min: 0
 ---
 # Age category code block
 code: |
@@ -61,32 +64,36 @@ fields:
 #Have split living tgt or apart.
 question: What is your relationship status?
 fields: 
-  - Are you living together or apart due to illness?: P08_married_apart
+  - Are you living together or living apart due to illness?: P08_married_apart
     input type: radio
     choices:
       - 'Living together'
       - 'Living apart due to illness'
 ---      
-question: What is your income per fortnight?
+question: |
+  What is your **current** income **per fortnight?**
 subquestion: |
-  Please exclude your DSP income from the figure.
+  **Please exclude your DSP income from the figure.**
 fields:
   - Your income: P08income
     datatype: currency
+    min: 0
 under: |
- Your income is     
+ Your income includes:    
  
- * an amount you earn, derive or receive for your own use or benefit
- * profits
- * some regular payments you get as a gift or allowance.
-  More information here: 
-  url: https://www.servicesaustralia.gov.au/individuals/topics/income/30376
+ * an amount you earn, derive, or receive for your own use or benefit,
+ * profits,
+ * some regular payments you recieve as a gift or allowance.
+ 
+  Please see [click here](https://www.servicesaustralia.gov.au/individuals/topics/income/30376) for more information.
 ---
 #Added this field
-question: What is your current DSP income?
+question: |
+  What is your **current** DSP income?
 fields:
   - no label: P08dspincome
     datatype: currency
+    min: 0
 ---
 question: Are you dependent or independent?
 fields:
@@ -97,13 +104,17 @@ fields:
     - 'At Home'   
 ---
 # NEW
-question: How many more hours do you intend to work a week?
+question: |
+  How **many *more* hours** do you intend to work **a week?**
 fields: 
- - Hours worked?: user_additional_hours
-   datatype: integer 
+ - Intended additional **weekly** hours?: user_additional_hours
+   datatype: integer
+   min: 0
 ---
 # NEW
-question: What much more will you earn/do you intend to earn per fortnight?
+question: |
+  How **much *more* ** will you earn/do you intend to earn **per *fortnight?* **
 fields:
-  - Your income: P08_additional_income
+  - Expected additional **fortnightly** income: P08_additional_income
     datatype: currency
+    min: 0
