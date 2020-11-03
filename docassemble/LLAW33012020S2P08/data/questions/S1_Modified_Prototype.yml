@@ -10,16 +10,31 @@ include:
   - S1_Modified_if_code_block.yml
 
 ---
+# Code: Progress Bar
+#features:
+#  progress bar: True
+#  navigation: True
+---
 # Welcome Page
 mandatory: True
-question: Disclaimer Page
+question: |
+  Community Bridging Services (CBS) Inc.
 subquestion: |
-  This application is only intended to be used to gauge whether you still qualify for the DSP or how much DSP will be deducted, based on the hours and income of your work.
+  Welcome to the CBS Inc. Disability Support Pension (DSP) application. This application is designed to inform you about any effect that your income may have on your DSP payments.
+  
+  ---
+  
+  **Disclaimer:**
 
-  Do you wish to continue?
+  **This application does not provide legal advice** and should not be considered as a substitute for legal advice. This application will ask for your personal information. You may choose to send this information to yourself or to your CBS Inc. advisor. Please see the CBS Inc. [privacy policy](https://communitybridgingservices.org.au/wp-content/uploads/2018/05/Privacy-Policy.pdf) for more information.
+  
+  If you have any questions, please contact us by using [this link](https://communitybridgingservices.org.au/contact-us/) or by calling 8224 2900.
+  
+  **By continuing, you accept these terms.**
 buttons:
-  - "Yes": continue
-  - "No": exit  
+  - I accept and wish to continue: continue
+  - I do not accept and wish to exit: exit
+    url: https://communitybridgingservices.org.au/
 ---
 # This is the 1ST ineligible endpoint
 event: endpoint['ineligible_1']
@@ -29,6 +44,7 @@ subquestion:
 
 buttons:
   - Exit: exit
+    url: https://communitybridgingservices.org.au/
   - Learn More: logout
     url: https://www.servicesaustralia.gov.au/individuals/services/centrelink/disability-support-pension
   - Restart: restart
@@ -38,16 +54,18 @@ event: endpoint['ineligible_2']
 question: Eligibility requirements not met
 subquestion: |
 
-  * You are not eligible to use this application as you have indicated that you work more than 30 hours a week.
+  * You are not eligible to use this application as you have indicated that you work for **30 or more hours a week.**
 
-  * Your DSP will be cut off if you work for 30 hours or more a week.
+  * Your DSP may be stopped if you work for **30 or more hours a week.**
   
-  * Please visit the centerlink website for more information.
+  * Please [contact Centerlink](https://www.servicesaustralia.gov.au/individuals/contact-us) for more information.
+
+  * You may choose to continue without your DSP for a time. You may resume your DSP anytime **within 2 years** of it being stopped, as long as you meet the eligibility requirements again.
   
 buttons:
   - Exit: exit
   - Learn More: logout
-    url: https://www.servicesaustralia.gov.au/individuals/services/centrelink/disability-support-pension/how-manage-your-payment/hours-you-can-work#:~:text=You%20may%20be%20able%20to,than%2030%20hours%20a%20week.
+    url: https://www.servicesaustralia.gov.au/individuals/services/centrelink/disability-support-pension/how-manage-your-payment/hours-you-can-work
   - Restart: restart
 ---
 #OBSOLETE now 
@@ -83,11 +101,13 @@ buttons:
 ---
 # This is the ELIGIBLE endpoint
 event: endpoint['eligible']
-question: You have reached the end
+question: You have reached the end of the survey
 subquestion: | 
- You have provided us with the following information. 
+
+ Your DSP **may** be reduced due to an increase in working hours/earnings. This amount is stated at the bottom of the table.
+
+ You have provided us with the following information:
  
- The amount of DSP which will be deducted is stated at the bottom of the table.
 
   Question|Answer
   ---|---
@@ -116,9 +136,14 @@ subquestion: |
   % if P08_new_hours > 30:
       You will be working more than the DSP 30 hours limit and will **no longer** be  eligible for the DSP.
   % endif
- 
+
+ This application merely intends to **estimate** how your DSP **may** be effected. Please [contact Centerlink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
+
+ Thank you for completing this survey.
+
 buttons:  
  - Exit: exit
+   url: https://communitybridgingservices.org.au/
  - Try Again: restart
 ---
 #Code to run threshold - eligible OR ineligible 
