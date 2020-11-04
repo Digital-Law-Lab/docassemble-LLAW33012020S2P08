@@ -10,10 +10,20 @@ include:
   - S1_Modified_if_code_block.yml
 
 ---
-# Code: Progress Bar
-#features:
-#  progress bar: True
-#  navigation: True
+# Features: refers to the .css file for bootstrap settings
+features:
+  css: C4_01_lnf_with_comments.css
+  debug: True
+  hide standard menu: False
+---
+# Logo: the CBS logo in the navbar
+objects:
+  - P08logo: DAStaticFile.using(filename='CBSInc-logo.png')
+---
+# Logo: the CBS logo in the navbar
+mandatory: True
+code: |
+  set_parts(logo='<img src="' + P08logo.url_for() + '" style="height: 50px;">')
 ---
 # Welcome Page
 mandatory: True
@@ -26,7 +36,7 @@ subquestion: |
   
   **Disclaimer:**
 
-  **This application does not provide legal advice** and should not be considered as a substitute for legal advice. This application will ask for your personal information. You may choose to send this information to yourself or to your CBS Inc. advisor. Please see the CBS Inc. [privacy policy](https://communitybridgingservices.org.au/wp-content/uploads/2018/05/Privacy-Policy.pdf) for more information.
+  **This application does not provide legal advice** and should not be considered as a substitute for legal advice. This application will ask for your personal information. Please see the CBS Inc. [privacy policy](https://communitybridgingservices.org.au/wp-content/uploads/2018/05/Privacy-Policy.pdf) for more information.
   
   If you have any questions, please contact us by using [this link](https://communitybridgingservices.org.au/contact-us/) or by calling 8224 2900.
   
@@ -40,7 +50,7 @@ buttons:
 event: endpoint['ineligible_1']
 question: Eligibility requirements not met
 subquestion:
-  You are not eligible to use this application as you have indicated that you are **not** in recipet of the DSP.
+  You are not eligible to use this application as you have indicated that you are **not** a recipient of the DSP.
 
 buttons:
   - Exit: exit
@@ -137,7 +147,7 @@ subquestion: |
       You will be working more than the DSP 30 hours limit and will **no longer** be  eligible for the DSP.
   % endif
 
- This application merely intends to **estimate** how your DSP **may** be effected. Please [contact Centerlink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
+ This application merely intends to **estimate** how your DSP **may** be affected. Please [contact Centerlink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
 
  Thank you for completing this survey.
 
