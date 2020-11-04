@@ -62,7 +62,7 @@ fields:
       - Couple
 ---
 #Have split living tgt or apart.
-question: What is your relationship status?
+question: What are your living arrangements?
 fields: 
   - Are you living together or living apart due to illness?: P08_married_apart
     input type: radio
@@ -85,7 +85,7 @@ under: |
  * profits,
  * some regular payments you recieve as a gift or allowance.
  
-  Please see [click here](https://www.servicesaustralia.gov.au/individuals/topics/income/30376) for more information.
+  Please [click here](https://www.servicesaustralia.gov.au/individuals/topics/income/30376) for more information.
 ---
 #Added this field
 question: |
@@ -105,7 +105,7 @@ fields:
 ---
 # NEW
 question: |
-  How **many *more* hours** do you intend to work **a week?**
+  How **many more hours** do you intend to work **a week?**
 fields: 
  - Intended additional **weekly** hours?: user_additional_hours
    datatype: integer
@@ -113,7 +113,7 @@ fields:
 ---
 # NEW
 question: |
-  How **much *more* ** will you earn/do you intend to earn **per *fortnight?* **
+  How **much more ** will you earn/do you intend to earn **per fortnight?**
 fields:
   - Expected additional **fortnightly** income: P08_additional_income
     datatype: currency
