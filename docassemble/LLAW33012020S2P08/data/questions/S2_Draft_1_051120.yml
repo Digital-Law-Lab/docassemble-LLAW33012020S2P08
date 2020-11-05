@@ -82,37 +82,6 @@ buttons:
     url: https://www.servicesaustralia.gov.au/individuals/services/centrelink/disability-support-pension/how-manage-your-payment/hours-you-can-work
   - Restart: restart
 ---
-#OBSOLETE now 
-# This is the 3RD ineligible endpoint for 
-event: endpoint['ineligible_3']
-question: Eligibility requirements not met
-subquestion: |
- You have provided us with the following information. 
- 
- Your income **exceeds** the DSP cut off point and **will not** recieve any DSP.
-
-  Question|Answer
-  ---|---
-  **Hours you work per week**| ${ user_hours } hours
-  **Your age**| ${ P08age }
-  ** Do you have any dependent children? ** | ${ P08has_chn }
-  **Your maritial status**| ${ P08is_married }
-  % if P08is_married != 'Single' and P08age_category == 'over_21':
-  ** Are you living apart or together?**| ${ P08_married_apart }
-  % endif
-  % if P08age_category == 'under_18' or P08age_category == '18to20' and P08chn_cat == 'no_chn' and P08is_married == 'Single':
-  ** Are you living at home or independently?**| ${ P08_Dependence }
-  % endif
-  **Your income per fortnight**| ${ currency(P08income) }
-  **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
-  **How much more will you earn**| ${ currency(P08_additional_income) } per fortnight
-
-buttons:
-  - Exit: exit
-  - Learn More: logout
-    url: https://www.servicesaustralia.gov.au/individuals/services/centrelink/disability-support-pension/who-can-get-it/non-medical-rules/income-and-assets-tests/income-test-pensions
-  - Restart: restart
----
 # This is the ELIGIBLE endpoint
 event: endpoint['eligible']
 question: You have reached the end of the survey
@@ -141,14 +110,14 @@ subquestion: |
   **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
   **How much more will you earn**| ${ currency(P08_additional_income) } per fortnight
   
-  You will be earning ${ currency(P08_new_income) } per week.
+  You will be earning ${ currency(P08_new_income) } per fortnight including your DSP.
   % if P08_new_income > my_thresholds['DSP_cutoff']:
-      You will be earning more than the DSP threshhold income and will **no longer** be eligible for the DSP.
+      You will be earning more than the DSP threshhold income and may **no longer** be eligible for the DSP.
   % endif
 
  You will be working ${ P08_new_hours } hours a fortnight.   
   % if P08_new_hours > 30:
-      You will be working more than the DSP 30 hours limit and will **no longer** be  eligible for the DSP.
+      You will be working more than the DSP 30 hours limit and may **no longer** be  eligible for the DSP.
   % endif
 
  This application merely intends to **estimate** how your DSP **may** be affected. Please [contact Centrelink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
@@ -189,7 +158,8 @@ code: |
 code: |
   a = P08_additional_income
   b = P08income
-  P08_new_income = a + b
+  c = amount_deducted
+  P08_new_income = a + b - c
 ---  
 code: |
   P08_new_hours = user_hours + user_additional_hours
