@@ -74,6 +74,7 @@ question: |
   What is your **current** income **per fortnight?**
 subquestion: |
   **Please exclude your DSP income from the figure.**
+  **Please state your income before tax.**
 fields:
   - Your income: P08income
     datatype: currency
@@ -89,7 +90,7 @@ under: |
 ---
 #Added this field
 question: |
-  What is your **current** DSP income?
+  What is your **current** DSP income **per fortnight?**
 fields:
   - no label: P08dspincome
     datatype: currency
