@@ -33,6 +33,7 @@ features:
   navigation back button: False
   question back button: True
   navigation: True
+  small screen navigation: dropdown
   hide standard menu: True
   
 ---
