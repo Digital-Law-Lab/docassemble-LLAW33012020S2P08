@@ -107,6 +107,7 @@ buttons:
 ---
 # This is the ELIGIBLE endpoint
 event: endpoint['eligible']
+decoration: end
 question: Your Results
 subquestion: | 
 
@@ -221,3 +222,12 @@ code: |
 #Code for new total worked hours 
 code: |
   P08_new_hours = user_hours + user_additional_hours
+---
+#Decoration & Attribution 
+image sets:
+  freepik:
+    images:
+      end: the-end.svg
+    attribution: |
+      Icon made by [Freepik](http://www.flaticon.com/authors/freepik)
+---
