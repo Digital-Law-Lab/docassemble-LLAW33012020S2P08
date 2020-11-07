@@ -162,7 +162,7 @@ attachment:
   filename: dsp_income_information
   valid formats:
     - pdf
-  docx template file: S2_PDF_Local_Copy.docx
+  docx template file: S2_PDF.docx
 
 buttons:  
  - Exit: exit
