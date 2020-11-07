@@ -1,4 +1,20 @@
 ---
+#Metadata
+metadata:
+ title: |
+    CBS Inc. DSP Compass
+ authors: 
+    - Name: Caleb Rothe
+      Organisation: Flinders University
+    - Name: Delaini Gates
+      Organisation: Flinders University
+    - Name: Joshua Duncliffe
+      Organisation: Flinders University
+    - Name: Lukas Hannett
+      Organisation: Flinders University
+    - Name: Rui Seah
+      Organisation: Flinders University
+---
 #Code to enable endpoint event
 objects:
   - endpoint: DADict
@@ -13,11 +29,11 @@ include:
 # Features: refers to the .css file for bootstrap settings
 features:
   css: C4_01_lnf_with_comments.css
-  debug: True
-  hide standard menu: False
+  debug: False
   navigation back button: False
   question back button: True
   navigation: True
+  hide standard menu: True
   
 ---
 # Logo: the CBS logo in the navbar
@@ -132,6 +148,8 @@ subquestion: |
   **Your income per fortnight before tax**| ${ currency(P08income) }
   **Your current DSP per fortnight is** | ${ currency(P08dspincome) }
   
+  ---
+  
  ####**Your new working hours and income:**
 
  Information Asked| Your Answer
@@ -139,6 +157,8 @@ subquestion: |
  **How much more will you earn excluding your DSP**| ${ currency(P08_additional_income) } per fortnight
  **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
  **How much DSP *may* be deducted due to this extra income**| ${ currency(amount_deducted) } 
+ 
+ ---
  
  ####**Your new total working hours and income:**
   
@@ -162,10 +182,14 @@ subquestion: |
 
  Please note, this application will **only estimate** how your DSP may be affected.
 
+ ---
+
  If you require more assitance, please [contact Centrelink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
  
  If you would prefer, you can also [contact CBS Inc.](https://communitybridgingservices.org.au/contact-us/) if you have any questions.
- 
+
+ ---
+
  If you would like to save a copy of this information or send it to a CBS Inc. staff member, you can email the information below to yourself or the CBS Inc. staff member by writing in an email address.
 
  *Only the people who recieve the email will be able to see your information.*
@@ -238,4 +262,18 @@ image sets:
       working_hours: working_hours.svg     
     attribution: |
       Icon made by [Freepik](http://www.flaticon.com/authors/freepik)
+---
+# Modify the post default screen part to attribute work to Flinders and your client
+# Remember to replace XXXX with your client's name.
+default screen parts:
+  post: |
+    <div style="display: flex; height: 200px; align-items: flex-end; flex-direction: row-reverse">
+    <div style="margin: 5px"><img src="https://staff.flinders.edu.au/etc.clientlibs/flinders/clientlibs/clientlib-site/resources/images/flinderuni_main_logo_black.png" height="40">
+    </div>
+    <div style="margin: 5px; text-align: center">
+    <cite><small><i>
+    Developed by Flinders University in collaboration with CBS Inc. 
+    </i></small></cite>
+    </div>
+    </div>
 ---

@@ -8,6 +8,7 @@ fields:
  - Hours worked?: user_hours
    datatype: integer 
    min: 0
+   default: 10
 section: Hours Worked
 ---
 #Threshold Question
@@ -19,6 +20,7 @@ fields:
    choices:
    - Yes
    - No
+   default: Yes
 section: DSP   
 ---   
 #First Question 
@@ -51,6 +53,7 @@ fields:
    choices: 
     - Yes
     - No
+   default: Yes
 section: Children    
 ---
 code: |
@@ -68,6 +71,7 @@ fields:
     choices:
       - Single
       - Couple
+    default: Couple
 section: Relationship      
 ---
 #Have split living tgt or apart.
@@ -79,6 +83,7 @@ fields:
     choices:
       - 'Living together'
       - 'Living apart due to illness'
+    default: Living together
 section: Living Arrangements      
 ---  
 decoration: money
@@ -91,6 +96,7 @@ fields:
   - Your income: P08income
     datatype: currency
     min: 0
+    default: 1000
 under: |
  Your income includes:    
  
@@ -109,6 +115,7 @@ fields:
   - no label: P08dspincome
     datatype: currency
     min: 0
+    default: 800
 section: Current DSP Income    
 ---
 question: Are you dependent or independent?
@@ -117,7 +124,8 @@ fields:
   input type: radio 
   choices:
     - 'Independent'
-    - 'At Home'   
+    - 'At Home'  
+  default: At Home
 section: Dependence     
 ---
 # NEW
@@ -128,6 +136,7 @@ fields:
  - Intended additional **weekly** hours?: user_additional_hours
    datatype: integer
    min: 0
+   default: 10
 section: New Working Hours   
 ---
 # NEW
@@ -138,4 +147,5 @@ fields:
   - Expected additional **fortnightly** income: P08_additional_income
     datatype: currency
     min: 0
+    default: 300
 section: New Income
