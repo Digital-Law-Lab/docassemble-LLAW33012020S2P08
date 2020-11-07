@@ -129,28 +129,34 @@ subquestion: |
   ** Are you living at home or independently?**| ${ P08_Dependence }
   % endif
   **Your income per fortnight before tax**| ${ currency(P08income) }
-  **Your current DSP is** | ${ currency(P08dspincome) }
+  **Your current DSP per fortnight is** | ${ currency(P08dspincome) }
   
  ####**Your new working hours and income:**
 
  Information Asked| Your Answer
  ---|---  
- **How much more will you earn per fortnight**| ${ currency(P08_additional_income) } per fortnight
+ **How much more will you earn excluding your DSP**| ${ currency(P08_additional_income) } per fortnight
  **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
- **How much DSP *may* be deducted from this extra income**| ${ currency(amount_deducted) } 
+ **How much DSP *may* be deducted due to this extra income**| ${ currency(amount_deducted) } 
  
  ####**Your new total working hours and income:**
   
  Information Asked| Your Answer
  ---|---  
- **Your new total income befor tax is** | ${ currency(P08_new_income) } per **fortnight** 
+ **Your new total income *including your DSP* before tax is** | ${ currency(P08_new_income) } per **fortnight** 
  **Your new total working hours is** | ${ P08_new_hours } hours a **week** 
 
-  % if P08_new_income > my_thresholds['DSP_cutoff']:
-      You will be earning more than the DSP threshhold income and **may no longer** be eligible for the DSP.
+
+  %if P08_new_income > my_thresholds['DSP_cutoff'] or P08_new_hours >= 30:
+ ####Your DSP income may be affected by your new income or working hours:
   % endif
+
+  % if P08_new_income > my_thresholds['DSP_cutoff']:
+ * You will be earning more than the DSP threshhold income and **may no longer** be eligible for the DSP.
+  % endif
+
  % if P08_new_hours >= 30:
-      You will be working more than the DSP 30 hours limit and **may no longer** be  eligible for the DSP.
+ * You will be working more than the DSP 30 hours limit and **may no longer** be  eligible for the DSP.
   % endif
 
  Please note, this application will **only estimate** how your DSP may be affected.
@@ -204,12 +210,14 @@ code: |
   my_ded_amt = my_thresholds['ded_amt']
   my_ded_incr = my_thresholds['ded_inc']
 ---
-#Code for new total income
+#Code for new total income including DSP
 code: |
   a = P08_additional_income
   b = P08income
   c = amount_deducted
-  P08_new_income = a + b - c
+  d = P08dspincome
+  P08_new_income = a + b + d - c
 ---  
+#Code for new total worked hours 
 code: |
   P08_new_hours = user_hours + user_additional_hours
