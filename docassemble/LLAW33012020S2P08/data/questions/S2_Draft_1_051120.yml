@@ -15,6 +15,10 @@ features:
   css: C4_01_lnf_with_comments.css
   debug: True
   hide standard menu: False
+  navigation back button: False
+  question back button: True
+  navigation: True
+  
 ---
 # Logo: the CBS logo in the navbar
 objects:
@@ -24,6 +28,25 @@ objects:
 mandatory: True
 code: |
   set_parts(logo='<img src="' + P08logo.url_for() + '" style="height: 50px;">')
+---
+#For the navigation bar
+sections:
+  - Introduction
+  - Current Personal Information:
+    - DSP
+    - Hours Worked
+    - Age
+    - Children
+    - Relationship
+    - Living Arrangements
+    - Dependence
+  - Current Working Information:
+    - Current Income
+    - Current DSP Income
+  - New Working Conditions:
+    - New Working Hours
+    - New Working Income
+  - Result Page
 ---
 # Welcome Page
 mandatory: True
@@ -84,15 +107,16 @@ buttons:
 ---
 # This is the ELIGIBLE endpoint
 event: endpoint['eligible']
-question: You have reached the end of the survey
+question: Your Results
 subquestion: | 
 
- Your DSP **may** be reduced due to an increase in working hours/earnings. This amount is stated at the bottom of the table.
+ Based upon the information you have provided us” your DSP may be reduced due to an increase in working hours/earnings.
 
- You have provided us with the following information:
- 
+ Your estimated earnings if you work additional hours is stated below
 
-  Question|Answer
+ ####**Please also check the information that you have provided us is correct:**
+
+  Information Asked| Your Answer
   ---|---
   **Hours you work per week**| ${ user_hours } hours
   **Your age**| ${ P08age }
@@ -106,28 +130,54 @@ subquestion: |
   % endif
   **Your income per fortnight before tax**| ${ currency(P08income) }
   **Your current DSP is** | ${ currency(P08dspincome) }
-  **How much DSP is deducted**| ${ currency(amount_deducted) } 
-  **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
-  **How much more will you earn**| ${ currency(P08_additional_income) } per fortnight
   
-  You will be earning ${ currency(P08_new_income) } per fortnight including your DSP.
+ ####**Your new working hours and income:**
+
+ Information Asked| Your Answer
+ ---|---  
+ **How much more will you earn per fortnight**| ${ currency(P08_additional_income) } per fortnight
+ **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
+ **How much DSP *may* be deducted from this extra income**| ${ currency(amount_deducted) } 
+ 
+ ####**Your new total working hours and income:**
+  
+ Information Asked| Your Answer
+ ---|---  
+ **Your new total income befor tax is** | ${ currency(P08_new_income) } per **fortnight** 
+ **Your new total working hours is** | ${ P08_new_hours } hours a **week** 
+
   % if P08_new_income > my_thresholds['DSP_cutoff']:
-      You will be earning more than the DSP threshhold income and may **no longer** be eligible for the DSP.
+      You will be earning more than the DSP threshhold income and **may no longer** be eligible for the DSP.
+  % endif
+ % if P08_new_hours >= 30:
+      You will be working more than the DSP 30 hours limit and **may no longer** be  eligible for the DSP.
   % endif
 
- You will be working ${ P08_new_hours } hours a fortnight.   
-  % if P08_new_hours > 30:
-      You will be working more than the DSP 30 hours limit and may **no longer** be  eligible for the DSP.
-  % endif
+ Please note, this application will **only estimate** how your DSP may be affected.
 
- This application merely intends to **estimate** how your DSP **may** be affected. Please [contact Centrelink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
+ If you require more assitance, please [contact Centrelink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
+ 
+ If you would prefer, you can also [contact CBS Inc.](https://communitybridgingservices.org.au/contact-us/) if you have any questions”.
+ 
+ If you would like to save a copy of this information or send it to a CBS Inc. staff member, you can email the information below to yourself or the CBS Inc. staff member by writing in an email address.”
 
+ *Only the people who recieve the email will be able to see your information.*
+ 
  Thank you for completing this application.
+ 
+attachment:
+ name: DSP Income Information
+ filename: dsp_income_information
+ valid formats:
+   - pdf
+ docx template file: S2_PDF.docx
 
 buttons:  
  - Exit: exit
    url: https://communitybridgingservices.org.au/
  - Try Again: restart
+ 
+section: Result Page
 ---
 #Code to run threshold - eligible OR ineligible 
 #REMOVED and ADDED new component in table above
@@ -144,7 +194,7 @@ code: |
   
 ---
 code: |
-  temp_income = P08income - my_no_pen
+  temp_income = P08_additional_income - my_no_pen
   amount_deducted = temp_income / my_ded_incr * my_ded_amt
 ---
 code: |

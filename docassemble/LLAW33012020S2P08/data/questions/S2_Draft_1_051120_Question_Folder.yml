@@ -7,6 +7,7 @@ fields:
  - Hours worked?: user_hours
    datatype: integer 
    min: 0
+section: Hours Worked
 ---
 #Threshold Question
 question: Are you a recipient of the DSP?
@@ -16,6 +17,7 @@ fields:
    choices:
    - Yes
    - No
+section: DSP   
 ---   
 #First Question 
 question: What is your age?
@@ -24,6 +26,7 @@ fields:
     datatype: integer
     default: 35
     min: 0
+section: Age
 ---
 # Age category code block
 code: |
@@ -44,6 +47,7 @@ fields:
    choices: 
     - Yes
     - No
+section: Children    
 ---
 #Possibly redundant now 
 code: |
@@ -60,6 +64,7 @@ fields:
     choices:
       - Single
       - Couple
+section: Relationship      
 ---
 #Have split living tgt or apart.
 question: What are your living arrangements?
@@ -69,6 +74,7 @@ fields:
     choices:
       - 'Living together'
       - 'Living apart due to illness'
+section: Living Arrangements      
 ---      
 question: |
   What is your **current** income **per fortnight?**
@@ -87,6 +93,7 @@ under: |
  * some regular payments you recieve as a gift or allowance.
  
   Please [click here](https://www.servicesaustralia.gov.au/individuals/topics/income/30376) for more information.
+section: Current Income  
 ---
 #Added this field
 question: |
@@ -95,6 +102,7 @@ fields:
   - no label: P08dspincome
     datatype: currency
     min: 0
+section: Current DSP Income    
 ---
 question: Are you dependent or independent?
 fields:
@@ -103,6 +111,7 @@ fields:
   choices:
     - 'Independent'
     - 'At Home'   
+section: Dependence     
 ---
 # NEW
 question: |
@@ -111,6 +120,7 @@ fields:
  - Intended additional **weekly** hours?: user_additional_hours
    datatype: integer
    min: 0
+section: New Working Hours   
 ---
 # NEW
 question: |
@@ -119,3 +129,4 @@ fields:
   - Expected additional **fortnightly** income: P08_additional_income
     datatype: currency
     min: 0
+section: New Income
