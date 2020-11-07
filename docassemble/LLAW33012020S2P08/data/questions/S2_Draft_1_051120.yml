@@ -157,7 +157,7 @@ subquestion: |
   % endif
 
  % if P08_new_hours >= 30:
- * You will be working more than the DSP 30 hours limit and **may no longer** be  eligible for the DSP.
+ * You will be working more than the DSP 30 hours limit and **may no longer** be  eligible for the DSP for the duration you are working 30 hours or more
   % endif
 
  Please note, this application will **only estimate** how your DSP may be affected.
