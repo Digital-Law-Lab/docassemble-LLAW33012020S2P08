@@ -1,6 +1,7 @@
 #This code block is to be used to ask the questions required to fulfill the endpoint tables.
 ---
 #Threshold Question
+decoration: working_hours
 question: |
   How many hours do you work **a week?**
 fields: 
@@ -10,6 +11,7 @@ fields:
 section: Hours Worked
 ---
 #Threshold Question
+decoration: DSP
 question: Are you a recipient of the DSP?
 fields: 
  - no label: user_DSP
@@ -20,6 +22,7 @@ fields:
 section: DSP   
 ---   
 #First Question 
+decoration: age
 question: What is your age?
 fields:
   - Your age: P08age
@@ -40,6 +43,7 @@ code: |
     P08age_category = 'invalid'
 ---
 #added "DEPENDENT"
+decoration: children
 question: Do you have any dependent children?
 fields: 
  - no label: P08has_chn
@@ -49,7 +53,6 @@ fields:
     - No
 section: Children    
 ---
-#Possibly redundant now 
 code: |
   if P08has_chn == 'Yes':
     P08chn_cat = 'has_chn'
@@ -57,6 +60,7 @@ code: |
     P08chn_cat = 'no_chn'
 ---
 #Marriage Question
+decoration: relationship
 question: What is your relationship status?
 fields: 
   - Marital status: P08is_married
@@ -67,6 +71,7 @@ fields:
 section: Relationship      
 ---
 #Have split living tgt or apart.
+decoration: house
 question: What are your living arrangements?
 fields: 
   - Are you living together or living apart due to illness?: P08_married_apart
@@ -75,7 +80,8 @@ fields:
       - 'Living together'
       - 'Living apart due to illness'
 section: Living Arrangements      
----      
+---  
+decoration: money
 question: |
   What is your **current** income **per fortnight?**
 subquestion: |
@@ -96,6 +102,7 @@ under: |
 section: Current Income  
 ---
 #Added this field
+decoration: DSP
 question: |
   What is your **current** DSP income **per fortnight?**
 fields:
@@ -114,6 +121,7 @@ fields:
 section: Dependence     
 ---
 # NEW
+decoration: working_hours
 question: |
   How **many more hours** do you intend to work **a week?**
 fields: 
@@ -123,6 +131,7 @@ fields:
 section: New Working Hours   
 ---
 # NEW
+decoration: money
 question: |
   How **much more ** will you earn/do you intend to earn **per fortnight?**
 fields:

@@ -227,7 +227,15 @@ code: |
 image sets:
   freepik:
     images:
+      age: age.svg
+      children: children.svg
+      dependence: dependable.svg
+      DSP: DSP.svg
       end: the-end.svg
+      house: house.svg
+      money: money.svg
+      relationship: relationship.svg 
+      working_hours: working_hours.svg     
     attribution: |
       Icon made by [Freepik](http://www.flaticon.com/authors/freepik)
 ---
