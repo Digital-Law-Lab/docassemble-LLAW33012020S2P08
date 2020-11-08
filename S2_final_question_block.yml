@@ -1,0 +1,151 @@
+#This code block is to be used to ask the questions required to fulfill the endpoint tables.
+---
+#Threshold Question
+decoration: working_hours
+question: |
+  How many hours do you work **a week?**
+fields: 
+ - Hours worked?: user_hours
+   datatype: integer 
+   min: 0
+   default: 10
+section: Hours Worked
+---
+#Threshold Question
+decoration: DSP
+question: Are you a recipient of the DSP?
+fields: 
+ - no label: user_DSP
+   datatype: radio 
+   choices:
+   - Yes
+   - No
+   default: Yes
+section: DSP   
+---   
+#First Question 
+decoration: age
+question: What is your age?
+fields:
+  - Your age: P08age
+    datatype: integer
+    default: 35
+    min: 0
+section: Age
+---
+# Age category code block
+code: |
+  if P08age >= 21:
+    P08age_category = 'over_21'
+  elif 17 < P08age < 21:
+    P08age_category = '18to20'
+  elif P08age < 18:
+    P08age_category = 'below_18'
+  else:
+    P08age_category = 'invalid'
+---
+#added "DEPENDENT"
+decoration: children
+question: Do you have any dependent children?
+fields: 
+ - no label: P08has_chn
+   datatype: radio 
+   choices: 
+    - Yes
+    - No
+   default: Yes
+section: Children    
+---
+code: |
+  if P08has_chn == 'Yes':
+    P08chn_cat = 'has_chn'
+  else:
+    P08chn_cat = 'no_chn'
+---
+#Marriage Question
+decoration: relationship
+question: What is your relationship status?
+fields: 
+  - Marital status: P08is_married
+    datatype: radio
+    choices:
+      - Single
+      - Couple
+    default: Couple
+section: Relationship      
+---
+#Have split living tgt or apart.
+decoration: house
+question: What are your living arrangements?
+fields: 
+  - Are you living together or living apart due to illness?: P08_married_apart
+    input type: radio
+    choices:
+      - 'Living together'
+      - 'Living apart due to illness'
+    default: Living together
+section: Living Arrangements      
+---  
+decoration: money
+question: |
+  What is your **current** income **per fortnight?**
+subquestion: |
+  **Please exclude your DSP income from the figure.**
+  **Please state your income before tax.**
+fields:
+  - Your income: P08income
+    datatype: currency
+    min: 0
+    default: 1000
+under: |
+ Your income includes:    
+ 
+ * an amount you earn, derive, or receive for your own use or benefit,
+ * profits,
+ * some regular payments you recieve as a gift or allowance.
+ 
+  Please [click here](https://www.servicesaustralia.gov.au/individuals/topics/income/30376) for more information.
+section: Current Income  
+---
+#Added this field
+decoration: DSP
+question: |
+  What is your **current** DSP income **per fortnight?**
+fields:
+  - no label: P08dspincome
+    datatype: currency
+    min: 0
+    default: 800
+section: Current DSP Income    
+---
+question: Are you dependent or independent?
+fields:
+  Dependence Status: P08_Dependence
+  input type: radio 
+  choices:
+    - 'Independent'
+    - 'At Home'  
+  default: At Home
+section: Dependence     
+---
+# NEW
+decoration: working_hours
+question: |
+  How **many more hours** do you intend to work **a week?**
+fields: 
+ - Intended additional **weekly** hours?: user_additional_hours
+   datatype: integer
+   min: 0
+   default: 10
+section: New Working Hours   
+---
+# NEW
+decoration: money
+question: |
+  How **much more ** will you earn/do you intend to earn **per fortnight?**
+fields:
+  - Expected additional **fortnightly** income: P08_additional_income
+    datatype: currency
+    min: 0
+    default: 300
+section: New Income
