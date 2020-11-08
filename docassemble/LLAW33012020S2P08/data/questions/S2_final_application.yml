@@ -20,7 +20,7 @@ metadata:
 objects:
   - endpoint: DADict
 ---
-#Code to include seperately maintained threshold table
+#Code to include separately maintained threshold table
 include: 
   - S2_final_thresholds.yml  
   - S2_final_question_block.yml
