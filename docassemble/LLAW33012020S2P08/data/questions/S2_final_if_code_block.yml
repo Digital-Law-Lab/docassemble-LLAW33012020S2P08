@@ -1,0 +1,59 @@
+---
+code: |
+   if P08age_category == 'over_21' and P08chn_cat == 'has_chn' and P08is_married == 'Single':
+      P08fourth_subcat = 'NA'
+      
+   elif P08age_category == 'over_21' and P08chn_cat == 'no_chn' and P08is_married == 'Single':
+      P08fourth_subcat = 'NA'
+      
+   elif P08age_category == 'over_21' and P08chn_cat == 'has_chn' and P08is_married == 'Couple' and P08_married_apart == 'Living together' :
+      P08fourth_subcat = 'Living together'
+      
+   elif P08age_category == 'over_21' and P08chn_cat == 'no_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living together' :
+      P08fourth_subcat = 'Living together'
+      
+   elif P08age_category == 'over_21' and P08chn_cat == 'has_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living apart due to illness' :
+      P08fourth_subcat = 'Living apart due to illness'
+
+   elif P08age_category == 'over_21' and P08chn_cat == 'no_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living apart due to illness' :
+      P08fourth_subcat = 'Living apart due to illness'
+
+   elif P08age_category == '18to20' and P08chn_cat == 'no_chn' and P08is_married == 'Single' and P08_Dependence == 'At Home':
+      P08fourth_subcat = 'At Home' 
+
+   elif P08age_category == '18to20' and P08chn_cat == 'no_chn' and P08is_married == 'Single' and P08_Dependence == 'Independent':
+      P08fourth_subcat = 'Independent'
+      
+   elif P08age_category == '18to20' and P08chn_cat == 'has_chn' and P08is_married == 'Single':
+      P08fourth_subcat = 'NA'
+      
+   elif P08age_category == '18to20' and P08chn_cat == 'no_chn' and P08is_married == 'Couple':
+      P08fourth_subcat = 'NA'
+
+   elif P08age_category == '18to20' and P08chn_cat == 'has_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living together' :
+      P08fourth_subcat = 'Living together'
+
+   elif P08age_category == '18to20' and P08chn_cat == 'has_chn' and P08is_married == 'Couple'and P08_married_apart == 'Living apart due to illness' :
+      P08fourth_subcat = 'Living apart due to illness'
+            
+   elif P08age_category == 'below_18' and P08chn_cat == 'no_chn' and P08is_married == 'Single' and P08_Dependence == 'At Home':
+      P08fourth_subcat = 'At Home' 
+      
+   elif P08age_category == 'below_18' and P08chn_cat == 'no_chn' and P08is_married == 'Single' and P08_Dependence == 'Independent':
+      P08fourth_subcat = 'Independent' 
+      
+   elif P08age_category == 'below_18' and P08chn_cat == 'no_chn' and P08is_married == 'Couple':
+      P08fourth_subcat = 'NA' 
+
+   elif P08age_category == 'below_18' and P08chn_cat == 'has_chn' and P08is_married == 'Single':
+      P08fourth_subcat = 'NA' 
+   
+   elif P08age_category == 'below_18' and P08chn_cat == 'has_chn' and P08is_married == 'Couple' and P08_married_apart == 'Living apart due to illness':
+      P08fourth_subcat = 'Living apart due to illness' 
+      
+   elif P08age_category == 'below_18' and P08chn_cat == 'has_chn' and P08is_married == 'Couple' and P08_married_apart == 'Living together':
+      P08fourth_subcat = 'Living together' 
+   
+   else:
+      P08fourth_subcat = 'NA' 
+--- 
