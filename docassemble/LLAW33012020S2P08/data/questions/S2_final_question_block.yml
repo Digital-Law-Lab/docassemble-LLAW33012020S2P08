@@ -96,7 +96,7 @@ fields:
   - Your income: P08income
     datatype: currency
     min: 0
-    default: 1000
+    default: 300
 under: |
  Your income includes:    
  

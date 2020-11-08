@@ -1,3 +1,4 @@
+#This is the yml to EXECUTE the application
 ---
 #Metadata
 metadata:
@@ -70,7 +71,7 @@ mandatory: True
 question: |
   Community Bridging Services (CBS) Inc.
 subquestion: |
-  Welcome to the CBS Inc. Disability Support Pension (DSP) application. This application is designed to inform you about any effect that your income may have on your DSP payments.
+  Welcome to the CBS Inc. Disability Support Pension (DSP) application. This application is designed to inform you about any affect that your income may have on your DSP payments.
   
   ---
   
@@ -130,8 +131,6 @@ subquestion: |
 
  Based upon the information you have provided us your DSP may be reduced due to an increase in working hours/earnings.
 
- Your estimated earnings if you work additional hours is stated below
-
  ####**Please also check the information that you have provided us is correct:**
 
   Information Asked| Your Answer
@@ -146,7 +145,7 @@ subquestion: |
   % if P08age_category != 'over_21' and P08chn_cat == 'no_chn' and P08is_married == 'Single':
   ** Are you living at home or independently?**| ${ P08_Dependence }
   % endif
-  **Your income per fortnight before tax**| ${ currency(P08income) }
+  **Your current income per fortnight before tax**| ${ currency(P08income) }
   **Your current DSP per fortnight is** | ${ currency(P08dspincome) }
   
   ---
@@ -155,7 +154,7 @@ subquestion: |
 
  Information Asked| Your Answer
  ---|---  
- **How much more will you earn excluding your DSP**| ${ currency(P08_additional_income) } per fortnight
+ **How much more you will earn excluding your DSP**| ${ currency(P08_additional_income) } per fortnight
  **Extra hours you intend to work per week**| ${ user_additional_hours } hours per week
  **How much DSP *may* be deducted due to this extra income**| ${ currency(amount_deducted) } 
  
