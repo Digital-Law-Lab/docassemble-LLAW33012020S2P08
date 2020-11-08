@@ -71,7 +71,7 @@ mandatory: True
 question: |
   Community Bridging Services (CBS) Inc.
 subquestion: |
-  Welcome to the CBS Inc. Disability Support Pension (DSP) application. This application is designed to inform you about any affect that your income may have on your DSP payments.
+  Welcome to the CBS Inc. Disability Support Pension (DSP) application. This application is designed to inform you about any effect that your income may have on your DSP payments.
   
   ---
   
@@ -164,8 +164,8 @@ subquestion: |
   
  Information Asked| Your Answer
  ---|---  
- **Your new total income *including your DSP* before tax is** | ${ currency(P08_new_income) } per **fortnight** 
- **Your new total working hours is** | ${ P08_new_hours } hours a **week** 
+ **Your new total income *including your DSP* before tax** | ${ currency(P08_new_income) } per **fortnight** 
+ **Your new total working hours** | ${ P08_new_hours } hours a **week** 
 
 
   %if P08_new_income > my_thresholds['DSP_cutoff'] or P08_new_hours >= 30:
@@ -184,7 +184,7 @@ subquestion: |
 
  ---
 
- If you require more assitance, please [contact Centrelink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
+ If you require more assistance, please [contact Centrelink](https://www.servicesaustralia.gov.au/individuals/contact-us) to confirm the status of your DSP.
  
  If you would prefer, you can also [contact CBS Inc.](https://communitybridgingservices.org.au/contact-us/) if you have any questions.
 
@@ -192,7 +192,7 @@ subquestion: |
 
  If you would like to save a copy of this information or send it to a CBS Inc. staff member, you can email the information below to yourself or the CBS Inc. staff member by writing in an email address.
 
- *Only the people who recieve the email will be able to see your information.*
+ *Only the people who receive the email will be able to see your information.*
  
  Thank you for completing this application.
  
