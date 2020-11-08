@@ -2,7 +2,9 @@
 
 A docassemble extension.
 
-## Author
-
-Mark Ferraretto, mark.ferraretto@flinders.edu.au
-
+## Authors
+Caleb Rothe
+Delaini Gates
+Joshua Duncliffe
+Lukas Hannett
+Rui Seah
