@@ -4,7 +4,11 @@ A docassemble extension.
 
 ## Authors
 Caleb Rothe
+
 Delaini Gates
+
 Joshua Duncliffe
+
 Lukas Hannett
+
 Rui Seah
