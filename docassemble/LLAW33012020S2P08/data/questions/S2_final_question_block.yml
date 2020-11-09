@@ -118,7 +118,7 @@ fields:
     default: 800
 under: |
  * Please input only your current DSP income per fortnight that you are receiving from Centrelink.  
- *  Please **do not** enter the maximum rate you can recieve.
+ *  Please **do not** enter the maximum rate you can receive.
 section: Current DSP Income    
 ---
 question: Are you dependent or independent?
