@@ -23,12 +23,9 @@ The estimate produced by the application can be checked by contacting Centrelink
 The application is anonymous and does not store information. The user can elect to save a copy of the information produced by sending an email to themselves. The email functionality is also useful for users to be able to send the information to a CBS Inc. staff member for reference if necessary. The created information will cease to exist once the user exits the application, except where it is emailed. 
 
 ## Authors
-Caleb Rothe
 
-Delaini Gates
-
-Joshua Duncliffe
-
-Lukas Hannett
-
-Rui Seah
+- Caleb Rothe
+- Delaini Gates
+- Joshua Duncliffe
+- Lukas Hannett
+- Rui Seah
