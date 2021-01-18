@@ -8,7 +8,6 @@ fields:
  - Hours worked?: user_hours
    datatype: integer 
    min: 0
-   default: 10
 section: Hours Worked
 ---
 #Threshold Question
@@ -20,7 +19,6 @@ fields:
    choices:
    - Yes
    - No
-   default: Yes
 section: DSP   
 ---   
 #First Question 
@@ -29,7 +27,6 @@ question: What is your age?
 fields:
   - Your age: P08age
     datatype: integer
-    default: 35
     min: 0
 section: Age
 ---
@@ -53,7 +50,6 @@ fields:
    choices: 
     - Yes
     - No
-   default: Yes
 section: Children    
 ---
 code: |
@@ -71,7 +67,6 @@ fields:
     choices:
       - Single
       - Couple
-    default: Couple
 section: Relationship      
 ---
 #Have split living tgt or apart.
@@ -83,7 +78,6 @@ fields:
     choices:
       - 'Living together'
       - 'Living apart due to illness'
-    default: Living together
 section: Living Arrangements      
 ---  
 decoration: money
@@ -96,7 +90,6 @@ fields:
   - Your income: P08income
     datatype: currency
     min: 0
-    default: 300
 under: |
  Your income includes:    
  
@@ -115,7 +108,6 @@ fields:
   - no label: P08dspincome
     datatype: currency
     min: 0
-    default: 800
 under: |
  * Please input only your current DSP income per fortnight that you are receiving from Centrelink.  
  *  Please **do not** enter the maximum rate you can receive.
@@ -128,7 +120,6 @@ fields:
   choices:
     - 'Independent'
     - 'At Home'  
-  default: At Home
 section: Dependence     
 ---
 # NEW
@@ -139,7 +130,6 @@ fields:
  - Intended additional **weekly** hours?: user_additional_hours
    datatype: integer
    min: 0
-   default: 10
 section: New Working Hours   
 ---
 # NEW
@@ -150,5 +140,4 @@ fields:
   - Expected additional **fortnightly** income: P08_additional_income
     datatype: currency
     min: 0
-    default: 300
 section: New Income
